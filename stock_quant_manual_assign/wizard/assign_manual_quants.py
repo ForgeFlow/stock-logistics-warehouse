@@ -149,14 +149,12 @@ class AssignManualQuantsLines(models.TransientModel):
         string="Package",
         related="quant_id.package_id",
         groups="stock.group_tracking_lot",
-        store=True,
     )
     owner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Owner",
         related="quant_id.owner_id",
         groups="stock.group_tracking_owner",
-        store=True,
     )
     # This is not correctly shown as related or computed, so we make it regular
     on_hand = fields.Float(
