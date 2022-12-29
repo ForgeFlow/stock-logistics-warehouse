@@ -139,11 +139,14 @@ msgstr "Prodotto"
 #: model:ir.model.fields,field_description:stock_demand_estimate.field_stock_demand_estimate__product_uom_qty
 msgid "Quantity"
 msgstr "Quantità"
+<<<<<<< HEAD
 
 #. module: stock_demand_estimate
 #: model:ir.model.fields,field_description:stock_demand_estimate.field_stock_demand_estimate__product_qty
 msgid "Quantity (Product UoM)"
 msgstr ""
+=======
+>>>>>>> b3ae4d90c (Translated using Weblate (Italian))
 
 #. module: stock_demand_estimate
 #: model:ir.model.fields,field_description:stock_demand_estimate.field_stock_demand_estimate__daily_qty
