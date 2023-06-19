@@ -68,6 +68,7 @@
         <field name="model">stock.request.kanban</field>
         <field name="arch" type="xml">
             <form string="Stock Requests">
+                <field name="company_id" invisible="1" />
                 <header />
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
@@ -112,7 +113,6 @@
                             <label for="product_uom_qty" />
                             <div>
                                 <field name="product_uom_qty" class="oe_inline" />
-                                <field name="allowed_uom_categ_id" invisible="1" />
                                 <field
                                     name="product_uom_id"
                                     class="oe_inline"
