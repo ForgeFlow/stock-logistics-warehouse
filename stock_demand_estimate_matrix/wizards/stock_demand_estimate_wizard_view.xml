@@ -57,10 +57,11 @@
                 <sheet>
                     <group name="dates">
                         <label for="date_start" string="Period" />
-                        <div><field name="date_start" class="oe_inline" /> to <field
-                                name="date_end"
-                                class="oe_inline"
-                            /></div>
+                        <div>
+                            <field name="date_start" class="oe_inline" />
+                            to
+                            <field name="date_end" class="oe_inline" />
+                        </div>
                     </group>
                     <group>
                         <group name="attributes">
@@ -68,20 +69,21 @@
                             <field name="location_id" />
                         </group>
                     </group>
-                    <div />
-                    <group name="products" string="Products">
-                        <field name="product_ids" nolabel="1" />
+                    <group>
+                        <group name="products" string="Products">
+                                <field name="product_ids" nolabel="1" />
+                        </group>
                     </group>
-                    <footer>
-                        <button
-                            name="create_sheet"
-                            string="Prepare"
-                            type="object"
-                            class="oe_highlight"
-                        /> or
-                        <button string="Cancel" class="oe_link" special="cancel" />
-                    </footer>
                 </sheet>
+                <footer>
+                    <button
+                        name="create_sheet"
+                        string="Prepare"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
             </form>
         </field>
     </record>
