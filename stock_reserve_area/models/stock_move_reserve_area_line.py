@@ -56,8 +56,9 @@ class StockMoveReserveAreaLine(models.Model):
             ON smral2.move_id = smral1.move_id
             AND smral2.reserve_area_id = rel.stock_reserve_area_2
             WHERE coalesce(smral1.reserved_availability,0.0) > 0.0
-            GROUP BY smral1.id, smral1.move_id, smral1.reserve_area_id
-            HAVING SUM(COALESCE(smral2.reserved_availability,0.0)) = 0.0;
+            AND COALESCE(smral1.reserved_availability, 0.0) >
+            COALESCE(smral2.reserved_availability, 0.0)
+            GROUP BY smral1.id, smral1.move_id, smral1.reserve_area_id;
         """
         )
         return [
