@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import SUPERUSER_ID, api
-from odoo.tools.sql import column_exists
+from odoo.tools.sql import column_exists, table_exists
 
 
 def pre_init_hook(cr):
@@ -18,6 +18,31 @@ def pre_init_hook(cr):
         ALTER TABLE "stock_move" ALTER COLUMN "area_reserved_availability" DROP DEFAULT
         """
         )
+
+    if not table_exists(cr, "stock_move_stock_reserve_area_rel"):
+        cr.execute(
+            """
+        CREATE TABLE stock_move_stock_reserve_area_rel
+        (stock_move_id INTEGER, stock_reserve_area_id INTEGER);
+        """
+        )
+
+
+def assign_reserve_area_ids_to_stock_move_query(cr):
+    query = """
+        INSERT INTO stock_move_stock_reserve_area_rel (stock_move_id, stock_reserve_area_id)
+        SELECT DISTINCT sm.id AS stock_move_id, srl.reserve_area_id AS stock_reserve_area_id
+        FROM stock_move sm
+        JOIN stock_location sl ON sm.location_id = sl.id
+        JOIN stock_reserve_area_stock_location_rel srl ON sl.id = srl.location_id
+        WHERE NOT EXISTS (
+        SELECT 1
+        FROM stock_move_stock_reserve_area_rel existing_rel
+        WHERE existing_rel.stock_move_id = sm.id
+        AND existing_rel.stock_reserve_area_id = srl.reserve_area_id
+        );
+    """
+    cr.execute(query)
 
 
 def post_init_hook(cr, registry):
@@ -40,3 +65,5 @@ def post_init_hook(cr, registry):
                 "company_id": warehouse.company_id.id,
             }
         )
+
+    assign_reserve_area_ids_to_stock_move_query(cr)
