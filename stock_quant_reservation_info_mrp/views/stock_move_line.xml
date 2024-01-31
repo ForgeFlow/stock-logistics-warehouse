@@ -27,7 +27,7 @@
         <field name="model">stock.move.line</field>
         <field name="inherit_id" ref="stock.view_move_line_form" />
         <field name="arch" type="xml">
-            <field name="origin" position="after">
+            <field name="reference" position="after">
                 <field
                     name="production_id"
                     string="Manufacturing Order"
