@@ -15,7 +15,7 @@
                     title="Related Document"
                     attrs="{'invisible': [('picking_id', '=', False)]}"
                 />
-                <field name="origin" />
+                <field name="reference" />
                 <field name="product_uom_qty" />
             </tree>
         </field>
