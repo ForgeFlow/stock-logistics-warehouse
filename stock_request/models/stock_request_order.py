@@ -13,6 +13,7 @@ class StockRequestOrder(models.Model):
 
     @api.model
     def default_get(self, fields):
+        # this is a test
         res = super().default_get(fields)
         warehouse = None
         if "warehouse_id" not in res and res.get("company_id"):
