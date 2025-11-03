@@ -25,16 +25,6 @@ class StockRule(models.Model):
                         "No MTS or MTO rule configured on procurement " "rule: %s!"
                     ) % (rule.name,)
                     raise ValidationError(msg)
-                if (
-                    rule.mts_rule_id.location_src_id.id
-                    != rule.mto_rule_id.location_src_id.id
-                ):
-                    msg = _(
-                        "Inconsistency between the source locations of "
-                        "the mts and mto rules linked to the procurement "
-                        "rule: %s! It should be the same."
-                    ) % (rule.name,)
-                    raise ValidationError(msg)
 
     def get_mto_qty_to_order(self, product, product_qty, product_uom, values):
         self.ensure_one()
@@ -79,7 +69,7 @@ class StockRule(models.Model):
                 )
                 == 0.0
             ):
-                getattr(self.env["stock.rule"], f"_run_{rule.mts_rule_id.action}")(
+                getattr(self.env["stock.rule"], f"_run_{rule.mto_rule_id.action}")(
                     [(procurement, rule.mto_rule_id)]
                 )
             else:
@@ -92,16 +82,24 @@ class StockRule(models.Model):
                 # Search all confirmed stock_moves of mts_procuremet and assign them
                 # to adjust the product's free qty
                 group_id = mts_procurement.values.get("group_id")
-                group_domain = expression.AND(
-                    [domain, [("group_id", "=", group_id.id)]]
-                )
+                if group_id:
+                    domain = expression.AND(
+                        [domain, [("group_id", "=", group_id.id)]]
+                    )
                 moves_to_assign = self.env["stock.move"].search(
-                    group_domain, order="priority desc, date asc"
+                    domain, order="priority desc, date asc"
                 )
                 moves_to_assign._action_assign()
 
                 mto_procurement = procurement._replace(product_qty=needed_qty)
-                getattr(self.env["stock.rule"], f"_run_{rule.mts_rule_id.action}")(
+                getattr(self.env["stock.rule"], f"_run_{rule.mto_rule_id.action}")(
                     [(mto_procurement, rule.mto_rule_id)]
                 )
         return True
+
+    @api.onchange("mts_rule_id", "mto_rule_id")
+    def _onchange_mts_mto_rule(self):
+        if self.mts_rule_id or self.mto_rule_id:
+            self.picking_type_id = (
+                self.mts_rule_id.picking_type_id or self.mto_rule_id.picking_type_id
+            )

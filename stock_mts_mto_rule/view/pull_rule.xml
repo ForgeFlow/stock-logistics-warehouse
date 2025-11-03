@@ -36,6 +36,12 @@
                     invisible="action != 'split_procurement'"
                 />
             </field>
+            <field name="picking_type_id" position="attributes">
+                <attribute name="invisible">action == 'split_procurement'</attribute>
+            </field>
+            <field name="location_src_id" position="attributes">
+                <attribute name="invisible">action == 'split_procurement'</attribute>
+            </field>
         </field>
     </record>
 </odoo>
