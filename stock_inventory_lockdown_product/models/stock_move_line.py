@@ -11,7 +11,7 @@ class StockMoveLine(models.Model):
     @api.constrains("location_dest_id", "location_id", "state")
     def _check_locked_location(self):
         soft_lock_lines = self.filtered(
-            lambda ml: ml.company_id.use_soft_inventory_lock
+            lambda ml: ml.company_id and ml.company_id[:1].use_soft_inventory_lock
         )
         for move_line in soft_lock_lines:
             if move_line.state == "done":
