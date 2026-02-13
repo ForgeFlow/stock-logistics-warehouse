@@ -30,17 +30,12 @@ msgstr ""
 
 #. module: stock_cycle_count
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_location_accuracy
-msgid "<span>%</span>"
-msgstr ""
-
-#. module: stock_cycle_count
-#: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_location_accuracy
 msgid "<span>Location:</span>"
 msgstr ""
 
 #. module: stock_cycle_count
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_location_accuracy
-msgid "<strong>Complete Name:</strong>"
+msgid "<strong>Complete name:</strong>"
 msgstr ""
 
 #. module: stock_cycle_count
@@ -55,7 +50,6 @@ msgstr ""
 
 #. module: stock_cycle_count
 #: model:ir.model.fields,field_description:stock_cycle_count.field_stock_inventory__inventory_accuracy
-#: model:ir.model.fields,field_description:stock_cycle_count.field_stock_move_line__line_accuracy
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_location_accuracy
 msgid "Accuracy"
 msgstr ""
@@ -107,7 +101,6 @@ msgstr ""
 
 #. module: stock_cycle_count
 #: model:ir.model.fields,field_description:stock_cycle_count.field_stock_cycle_count__responsible_id
-#: model:ir.model.fields,field_description:stock_cycle_count.field_stock_inventory__responsible_id
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.report_cyclecount
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_cycle_count_form_view
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_cycle_count_search_view
@@ -128,11 +121,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:stock_cycle_count.field_res_company__auto_start_inventory_from_cycle_count
 #: model:ir.model.fields,field_description:stock_cycle_count.field_res_config_settings__auto_start_inventory_from_cycle_count
 msgid "Auto Start Inventory Adjustment from Cycle Count"
-msgstr ""
-
-#. module: stock_cycle_count
-#: model:ir.model.fields,field_description:stock_cycle_count.field_stock_cycle_count__automatic_deadline_date
-msgid "Automatic Required Date"
 msgstr ""
 
 #. module: stock_cycle_count
@@ -179,11 +167,6 @@ msgstr ""
 #. module: stock_cycle_count
 #: model:ir.model.fields,field_description:stock_cycle_count.field_stock_inventory__prefill_counted_quantity
 msgid "Counted Quantities"
-msgstr ""
-
-#. module: stock_cycle_count
-#: model:ir.model.fields,field_description:stock_cycle_count.field_stock_move_line__counted_qty
-msgid "Counted Quantity"
 msgstr ""
 
 #. module: stock_cycle_count
@@ -537,18 +520,13 @@ msgid "Location"
 msgstr ""
 
 #. module: stock_cycle_count
-#: model:ir.model,name:stock_cycle_count.model_report_stock_cycle_count_stock_location_accuracy
+#: model:ir.model,name:stock_cycle_count.model_report_stock_location_accuracy
 msgid "Location Accuracy Report"
 msgstr ""
 
 #. module: stock_cycle_count
 #: model:ir.model.fields,field_description:stock_cycle_count.field_stock_cycle_count__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
-
-#. module: stock_cycle_count
-#: model:ir.model.fields,field_description:stock_cycle_count.field_stock_cycle_count__manual_deadline_date
-msgid "Manual Required Date"
 msgstr ""
 
 #. module: stock_cycle_count
@@ -582,11 +560,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:stock_cycle_count.field_stock_cycle_count__name
 #: model:ir.model.fields,field_description:stock_cycle_count.field_stock_cycle_count_rule__name
 msgid "Name"
-msgstr ""
-
-#. module: stock_cycle_count
-#: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_location_accuracy
-msgid "No inventory records found for this location."
 msgstr ""
 
 #. module: stock_cycle_count
@@ -642,19 +615,8 @@ msgid "Planned"
 msgstr ""
 
 #. module: stock_cycle_count
-#: model:ir.model,name:stock_cycle_count.model_stock_move_line
-msgid "Product Moves (Stock Move Line)"
-msgstr ""
-
-#. module: stock_cycle_count
-#: model:ir.model,name:stock_cycle_count.model_stock_quant
-msgid "Quants"
-msgstr ""
-
-#. module: stock_cycle_count
 #: model:ir.model.fields,field_description:stock_cycle_count.field_stock_cycle_count__date_deadline
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.report_cyclecount
-#: model_terms:ir.ui.view,arch_db:stock_cycle_count.stock_cycle_count_search_view
 msgid "Required Date"
 msgstr ""
 
@@ -699,11 +661,6 @@ msgstr ""
 #. module: stock_cycle_count
 #: model_terms:ir.ui.view,arch_db:stock_cycle_count.res_config_settings_view_form_cycle_adjustment
 msgid "Sets default counted quanities in Inventory Adjustments"
-msgstr ""
-
-#. module: stock_cycle_count
-#: model:ir.model.fields,help:stock_cycle_count.field_stock_inventory__responsible_id
-msgid "Specific responsible of Inventory Adjustment."
 msgstr ""
 
 #. module: stock_cycle_count
@@ -773,11 +730,6 @@ msgstr ""
 #: code:addons/stock_cycle_count/models/stock_inventory.py:0
 #, python-format
 msgid "The location in the inventory does not match with the cycle count."
-msgstr ""
-
-#. module: stock_cycle_count
-#: model:ir.model.fields,field_description:stock_cycle_count.field_stock_move_line__theoretical_qty
-msgid "Theoretical Quantity"
 msgstr ""
 
 #. module: stock_cycle_count

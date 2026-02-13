@@ -83,16 +83,6 @@ class TestAssignAutoRelease(PromiseReleaseCommonCase):
         move.move_line_ids.location_dest_id = self.loc_bin1.id
         move._action_done()
 
-    def test_filter_auto_releaseable_locations(self):
-        """Test that the locations are filtered by the warehouse view location"""
-        self.assertEqual(
-            self.picking.move_ids._filter_auto_releaseable_locations(self.loc_bin1),
-            self.loc_bin1,
-        )
-        self.assertFalse(
-            self.picking.move_ids._filter_auto_releaseable_locations(self.loc_supplier),
-        )
-
     def test_product_pickings_auto_release(self):
         """Test job method, update qty available and launch auto release on
         the product"""
@@ -203,8 +193,8 @@ class TestAssignAutoRelease(PromiseReleaseCommonCase):
         )
         with trap_jobs() as trap:
             self._receive_product(self.product1, 100)
-            shipping.invalidate_recordset()
-            shipping.move_ids.invalidate_recordset()
+            shipping.invalidate_cache()
+            shipping.move_ids.invalidate_cache()
             trap.perform_enqueued_jobs()
             job = self._get_job_for_method(
                 trap.enqueued_jobs, shipping.auto_release_available_to_promise
@@ -212,8 +202,8 @@ class TestAssignAutoRelease(PromiseReleaseCommonCase):
             self.assertFalse(job)
         with trap_jobs() as trap:
             self._receive_product(self.product2, 100)
-            shipping.invalidate_recordset()
-            shipping.move_ids.invalidate_recordset()
+            shipping.invalidate_cache()
+            shipping.move_ids.invalidate_cache()
             trap.perform_enqueued_jobs()
             job = self._get_job_for_method(
                 trap.enqueued_jobs, shipping.auto_release_available_to_promise

@@ -8,6 +8,7 @@
         <field name="inherit_id" ref="stock_inventory.view_inventory_group_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
+                <field name="location_ids" />
                 <field name="cycle_count_id" />
                 <field name="inventory_accuracy" />
             </field>
@@ -30,19 +31,16 @@
     <record id="view_inventory_filter" model="ir.ui.view">
         <field name="name">stock.inventory.filter - stock_cycle_count</field>
         <field name="model">stock.inventory</field>
-        <field name="inherit_id" ref="stock_inventory.stock_inventory_search_view" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//search/field[@name='products_under_review_ids']"
-                position="after"
-            >
+            <search>
+                <field name="location_ids" />
                 <field name="responsible_id" />
                 <filter
                     string="My Adjustments"
                     name="my_adjustments"
                     domain="[('responsible_id', '=', uid)]"
                 />
-            </xpath>
+            </search>
         </field>
     </record>
     <record id="view_inventory_graph" model="ir.ui.view">

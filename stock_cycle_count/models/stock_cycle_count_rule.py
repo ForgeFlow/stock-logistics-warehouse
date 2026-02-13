@@ -160,7 +160,6 @@ class StockCycleCountRule(models.Model):
             "date": fields.Datetime.from_string(date),
             "location": location,
             "rule_type": self,
-            "company_id": location.company_id,
         }
         return cycle_count
 
@@ -173,7 +172,7 @@ class StockCycleCountRule(models.Model):
                 .search(
                     [
                         ("location_ids", "in", [loc.id]),
-                        ("state", "in", ["in_progress", "done", "draft"]),
+                        ("state", "in", ["confirm", "done", "draft"]),
                     ],
                     order="date desc",
                     limit=1,

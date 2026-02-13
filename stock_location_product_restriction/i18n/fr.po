@@ -80,9 +80,11 @@ msgstr ""
 #: code:addons/stock_location_product_restriction/models/stock_quant.py:0
 #, python-format
 msgid ""
-"The location %(location)s can only contain items of the same product. You "
-"plan to put different products into this location. (%(products)s)"
+"The location {location} can only contain items of the same product. You plan "
+"to put different products into this location. ({products})"
 msgstr ""
+"L'emplacement {location} ne peut contenir que des articles identiques. Vous "
+"essayer de mettre d'autres articles dans cet emplacement. ({products}) "
 
 #. module: stock_location_product_restriction
 #. odoo-python
@@ -90,7 +92,7 @@ msgstr ""
 #, python-format
 msgid ""
 "This location should only contain items of the same product but it contains "
-"items of products %(products)s"
+"items of products {products}"
 msgstr ""
 
 #. module: stock_location_product_restriction
@@ -103,29 +105,13 @@ msgstr "Ne respecte pas les règles"
 #: code:addons/stock_location_product_restriction/models/stock_quant.py:0
 #, python-format
 msgid ""
-"You plan to add the product %(product)s into the location %(location)s but "
-"the location must only contain items of same product and already contains "
-"items of other product(s) (%(existing_products)s)."
+"You plan to add the product {product} into the location {location} but the "
+"location must only contain items of same product and already contains items "
+"of other product(s) ({existing_products})."
 msgstr ""
-
-#, python-format
-#~ msgid ""
-#~ "The location {location} can only contain items of the same product. You "
-#~ "plan to put different products into this location. ({products})"
-#~ msgstr ""
-#~ "L'emplacement {location} ne peut contenir que des articles identiques. "
-#~ "Vous essayer de mettre d'autres articles dans cet emplacement. "
-#~ "({products}) "
-
-#, python-format
-#~ msgid ""
-#~ "You plan to add the product {product} into the location {location} but "
-#~ "the location must only contain items of same product and already contains "
-#~ "items of other product(s) ({existing_products})."
-#~ msgstr ""
-#~ "Vous essayer d'ajouter le produit {product} dans l'emplacemet {location} "
-#~ "mais l'emplacement ne peut contenir que des articles identiques et "
-#~ "contient déja d'autes articles ({existing_products})"
+"Vous essayer d'ajouter le produit {product} dans l'emplacemet {location} "
+"mais l'emplacement ne peut contenir que des articles identiques et contient "
+"déja d'autes articles ({existing_products})"
 
 #~ msgid "Stock Move"
 #~ msgstr "Mouvement de stock"

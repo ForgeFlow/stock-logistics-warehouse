@@ -20,40 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: stock_inventory_discrepancy
-#: model_terms:ir.ui.view,arch_db:stock_inventory_discrepancy.view_stock_config_settings
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
-msgstr ""
-
-#. module: stock_inventory_discrepancy
 #: model_terms:ir.ui.view,arch_db:stock_inventory_discrepancy.confirm_discrepancy_wizard
 msgid "Apply"
 msgstr ""
 
 #. module: stock_inventory_discrepancy
-#: model:ir.model.fields,help:stock_inventory_discrepancy.field_res_company__inventory_discrepancy_enable
-#: model:ir.model.fields,help:stock_inventory_discrepancy.field_res_config_settings__inventory_discrepancy_enable
-#: model_terms:ir.ui.view,arch_db:stock_inventory_discrepancy.view_stock_config_settings
-msgid ""
-"Block validation of the inventory adjustment if discrepancy exceeds the "
-"threshold."
-msgstr ""
-
-#. module: stock_inventory_discrepancy
 #: model_terms:ir.ui.view,arch_db:stock_inventory_discrepancy.confirm_discrepancy_wizard
 msgid "Cancel"
-msgstr ""
-
-#. module: stock_inventory_discrepancy
-#: model:ir.model,name:stock_inventory_discrepancy.model_res_company
-msgid "Companies"
-msgstr ""
-
-#. module: stock_inventory_discrepancy
-#: model:ir.model,name:stock_inventory_discrepancy.model_res_config_settings
-msgid "Config Settings"
 msgstr ""
 
 #. module: stock_inventory_discrepancy
@@ -107,17 +80,6 @@ msgid "ID"
 msgstr ""
 
 #. module: stock_inventory_discrepancy
-#: model_terms:ir.ui.view,arch_db:stock_inventory_discrepancy.view_location_form
-msgid "Inventory Discrepancy"
-msgstr ""
-
-#. module: stock_inventory_discrepancy
-#: model:ir.model.fields,field_description:stock_inventory_discrepancy.field_res_company__inventory_discrepancy_enable
-#: model:ir.model.fields,field_description:stock_inventory_discrepancy.field_res_config_settings__inventory_discrepancy_enable
-msgid "Inventory Discrepancy Control"
-msgstr ""
-
-#. module: stock_inventory_discrepancy
 #: model:ir.model,name:stock_inventory_discrepancy.model_stock_location
 msgid "Inventory Locations"
 msgstr ""
@@ -161,7 +123,7 @@ msgstr ""
 
 #. module: stock_inventory_discrepancy
 #. odoo-python
-#: code:addons/stock_inventory_discrepancy/models/stock_quant.py:0
+#: code:addons/stock_inventory_discrepancy/hooks.py:0
 #, python-format
 msgid "Only a stock manager can validate an inventory adjustment."
 msgstr ""

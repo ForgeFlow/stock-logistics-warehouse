@@ -35,27 +35,15 @@ class StockQuant(models.Model):
                 products = ProductProduct.browse(list(product_ids))
                 error_msgs.append(
                     _(
-                        "The location %(location)s can only contain items of the same "
+                        "The location {location} can only contain items of the same "
                         "product. You plan to put different products into "
-                        "this location. (%(products)s)",
+                        "this location. ({products})"
+                    ).format(
                         location=location.name,
                         products=", ".join(products.mapped("name")),
                     )
                 )
         # Get existing product already in the locations
-        precision_digits = max(
-            6, self.sudo().env.ref("product.decimal_product_uom").digits * 2
-        )
-        self.flush_model(
-            [
-                "product_id",
-                "location_id",
-                "quantity",
-                "reserved_quantity",
-                "available_quantity",
-                "inventory_quantity",
-            ]
-        )
         SQL = """
             SELECT
                 location_id,
@@ -64,23 +52,10 @@ class StockQuant(models.Model):
                 stock_quant
             WHERE
                 location_id in %s
-            /* Mimic the _unlink_zero_quant() query in Odoo */
-            AND (NOT (round(quantity::numeric, %s) = 0 OR quantity IS NULL)
-            OR NOT round(reserved_quantity::numeric, %s) = 0
-            OR NOT (round(inventory_quantity::numeric, %s) = 0
-                    OR inventory_quantity IS NULL))
             GROUP BY
                 location_id
         """
-        self.env.cr.execute(
-            SQL,
-            (
-                tuple(quants_to_check.mapped("location_id").ids),
-                precision_digits,
-                precision_digits,
-                precision_digits,
-            ),
-        )
+        self.env.cr.execute(SQL, (tuple(quants_to_check.mapped("location_id").ids),))
         existing_product_ids_by_location_id = dict(self.env.cr.fetchall())
 
         for (
@@ -94,12 +69,12 @@ class StockQuant(models.Model):
                 to_move_products = ProductProduct.browse(list(product_ids_to_add))
                 error_msgs.append(
                     _(
-                        "You plan to add the product %(product)s into the location"
-                        " %(location)s "
+                        "You plan to add the product {product} into the location {location} "
                         "but the location must only contain items of same "
                         "product and already contains items of other "
                         "product(s) "
-                        "(%(existing_products)s).",
+                        "({existing_products})."
+                    ).format(
                         product=" | ".join(to_move_products.mapped("name")),
                         location=location.name,
                         existing_products=" | ".join(existing_products.mapped("name")),

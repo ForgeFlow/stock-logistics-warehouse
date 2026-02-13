@@ -106,7 +106,7 @@ class StockLocation(models.Model):
         )
         self.env["stock.cycle.count"].create(
             {
-                "automatic_deadline_date": date,
+                "date_deadline": date,
                 "location_id": self.id,
                 "cycle_count_rule_id": rule.id,
                 "state": "draft",
