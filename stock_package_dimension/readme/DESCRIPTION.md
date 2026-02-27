@@ -1,0 +1,1 @@
+This module allows to store dimensions (length, width, height) and volume of stock packagings.
