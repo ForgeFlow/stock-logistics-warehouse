@@ -141,3 +141,24 @@ class TestStockWarehouseCalendar(TransactionCase):
         self.warehouse_2.calendar_compute_leaves = True
         result = self.warehouse_2.wh_plan_days(reference, -3).date()
         self.assertEqual(result, fields.Date.to_date("2097-01-03"))
+
+    def test_05_wh_plan_hours_with_leave(self):
+        """Test plan hours helper in warehouse with global time off."""
+        reference = "2097-01-04 00:00:00"  # Friday
+        result = self.warehouse_2.wh_plan_hours(reference, 12).date()
+        self.assertEqual(result, fields.Date.to_date("2097-01-07"))
+        self.env["resource.calendar.leaves"].create(
+            {
+                "calendar_id": self.calendar.id,
+                "resource_id": False,
+                "date_from": "2097-01-07 00:00:00",  # Monday
+                "date_to": "2097-01-07 23:59:59",
+                "time_type": "leave",
+            }
+        )
+        # Global Time Off is ignored unless the warehouse is set to consider it
+        result = self.warehouse_2.wh_plan_hours(reference, 12).date()
+        self.assertEqual(result, fields.Date.to_date("2097-01-07"))
+        self.warehouse_2.calendar_compute_leaves = True
+        result = self.warehouse_2.wh_plan_hours(reference, 12).date()
+        self.assertEqual(result, fields.Date.to_date("2097-01-08"))

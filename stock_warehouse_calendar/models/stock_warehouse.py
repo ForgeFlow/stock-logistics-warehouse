@@ -51,3 +51,20 @@ class StockWarehouse(models.Model):
         else:
             date_result = date_from + timedelta(days=delta)
         return date_result
+
+    def wh_plan_hours(self, date_from, hours):
+        """Helper method to schedule warehouse operations based on its
+        working hours (if set).
+
+        :param datetime date_from: reference date.
+        :param float hours: offset to apply, in hours.
+        :return: datetime: resulting date.
+        """
+        self.ensure_one()
+        if not isinstance(date_from, datetime):
+            date_from = fields.Datetime.to_datetime(date_from)
+        if not self.calendar_id:
+            return date_from + timedelta(hours=hours)
+        return self.calendar_id.plan_hours(
+            hours, date_from, compute_leaves=self.calendar_compute_leaves
+        )
